@@ -20,7 +20,11 @@ export function ModeToggle() {
       className="p-2 rounded-full hover:bg-muted transition"
       aria-label="Toggle Theme"
     >
-      {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+      {theme === "light" ? (
+        <Moon size={18} className="cursor-pointer" />
+      ) : (
+        <Sun size={18} className="cursor-pointer" />
+      )}
     </button>
   );
 }

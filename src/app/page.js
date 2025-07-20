@@ -15,6 +15,7 @@ import {
   FiGlobe,
   FiLock,
 } from "react-icons/fi";
+import Head from "next/head";
 
 // Animation variants
 const container = {
@@ -61,6 +62,33 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <Head>
+        <title>AzamTools – Free Online Tools Hub</title>
+        <meta
+          name="description"
+          content="Free and fast online tools – PDF, image, text, and developer tools. No sign-up, no cost."
+        />
+        <meta
+          name="keywords"
+          content="online tools, free tools, pdf tools, image to pdf, image compressor, QR generator, text converter, JSON formatter"
+        />
+        <meta name="author" content="Muhammad Azam Raza" />
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph for social media */}
+        <meta property="og:title" content="AzamTools – All-in-One Tools Hub" />
+        <meta
+          property="og:description"
+          content="Use free online tools without any cost. Built for speed and privacy."
+        />
+        <meta
+          property="og:image"
+          content="https://azamtools.com/preview-image.png"
+        />
+        <meta property="og:url" content="https://azamtools.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
+
       {/* Hero Section */}
       <section className="flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <motion.div
