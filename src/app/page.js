@@ -61,7 +61,7 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="">
       <Head>
         <title>AzamTools – Free Online Tools Hub</title>
         <meta
@@ -186,15 +186,12 @@ export default function Home() {
             className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
           >
             {categories?.map((cat) => (
-              <motion.div key={cat.name} variants={item}>
+              <motion.div key={cat.name} variants={item} whileHover={cardHover}>
                 <Link
                   href="#tools"
                   className="bg-muted hover:bg-muted/70 border border-border rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all shadow-sm hover:shadow-md group"
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="mb-3 text-3xl text-primary group-hover:text-secondary transition-colors"
-                  >
+                  <motion.div className="mb-3 text-3xl text-primary group-hover:text-secondary transition-colors">
                     {cat.icon}
                   </motion.div>
                   <h3 className="text-lg font-semibold font-sans">
@@ -260,13 +257,13 @@ export default function Home() {
                   <p className="text-muted-foreground mb-4">
                     {tool.description}
                   </p>
-                  <a
-                    href="#feature-tools"
+                  <Link
+                    href={tool.href}
                     className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg hover:opacity-90 transition group"
                   >
                     Use Now
                     <FiArrowRight className="mt-1 transition-transform group-hover:translate-x-1" />
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             ))}

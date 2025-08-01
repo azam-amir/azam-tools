@@ -5,7 +5,7 @@ import { Github, Youtube } from "lucide-react"; // You can replace with other ic
 
 export default function Footer() {
   return (
-    <footer className="bg-background text-foreground py-6">
+    <footer className="bg-background/80 backdrop-blur fixed bottom-0 w-full z-10 text-foreground py-6">
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
         {/* Left: Copyright + Credit */}
         <div className="text-center md:text-left">

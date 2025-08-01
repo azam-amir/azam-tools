@@ -45,36 +45,43 @@ export const featuredTools = [
     description: "Convert your PDF pages into high-quality images.",
     icon: "📄",
     href: "/tools/pdf-to-image",
+    slug: "pdf-to-image",
+    category: "PDF Tools",
   },
   {
     name: "Image Compressor",
     description: "Reduce image size without losing quality.",
     icon: "🖼️",
     href: "/tools/image-compressor",
+    slug: "image-compressor",
   },
   {
     name: "Text Case Converter",
     description: "Change text to UPPERCASE, lowercase, etc.",
     icon: "🔤",
     href: "/tools/text-case-converter",
+    slug: "text-case-converter",
   },
   {
     name: "QR Code Generator",
     description: "Create custom QR codes for any data.",
     icon: "🔳",
     href: "/tools/qr-code-generator",
+    slug: "qr-code-generator",
   },
   {
     name: "JSON Formatter",
     description: "Format and beautify raw JSON data.",
     icon: "🧾",
     href: "/tools/json-formatter",
+    slug: "json-formatter",
   },
   {
     name: "Password Generator",
     description: "Generate secure random passwords instantly.",
     icon: "🔒",
     href: "/tools/password-generator",
+    slug: "password-generator",
   },
 ];
 export const allTools = [

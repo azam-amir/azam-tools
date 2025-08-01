@@ -61,7 +61,9 @@ export default function RootLayout({ children }) {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <LoaderWrapper>
             <Header />
-            {children}
+            <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4 sm:px-6 lg:px-8">
+              {children}
+            </div>
             <Footer />
           </LoaderWrapper>
         </ThemeProvider>
