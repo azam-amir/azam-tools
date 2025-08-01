@@ -1,21 +1,24 @@
 "use client";
 
+import { CategoryCard } from "@/components/Cards/CategoryCard";
+import { ToolCard } from "@/components/Cards/ToolCard";
+import { ROUTES } from "@/utils/constant";
+import { categories, tools } from "@/utils/mock";
+import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useTheme } from "next-themes";
-import Logo from "../../public/images/logo.png";
-import { allTools, categories, featuredTools } from "@/utils/mock";
 import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
 import {
-  FiSearch,
   FiArrowRight,
   FiCheck,
-  FiZap,
   FiGlobe,
   FiLock,
+  FiSearch,
+  FiZap,
 } from "react-icons/fi";
-import Head from "next/head";
+import Logo from "../../public/images/logo.png";
 
 // Animation variants
 const container = {
@@ -24,18 +27,34 @@ const container = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
+      delayChildren: 0.2,
     },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 15,
+      duration: 0.5,
+    },
+  },
 };
 
 const cardHover = {
-  scale: 1.03,
-  transition: { duration: 0.3 },
+  y: -5,
+  scale: 1.02,
+  transition: {
+    type: "spring",
+    stiffness: 300,
+    damping: 10,
+  },
 };
 
 export default function Home() {
@@ -48,7 +67,7 @@ export default function Home() {
   }, []);
 
   const filteredTools = useMemo(() => {
-    return allTools?.filter((item) => {
+    return tools?.filter((item) => {
       const matchesSearch = [item?.name]
         .join(" ")
         .toLowerCase()
@@ -56,7 +75,7 @@ export default function Home() {
 
       return matchesSearch;
     });
-  }, [search, allTools]);
+  }, [search, tools]);
 
   if (!mounted) return null;
 
@@ -99,9 +118,16 @@ export default function Home() {
         >
           {/* Logo */}
           <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 100 }}
+            initial={{ scale: 0.8, rotate: -5 }}
+            animate={{
+              scale: 1,
+              rotate: 0,
+              transition: {
+                type: "spring",
+                stiffness: 150,
+                damping: 10,
+              },
+            }}
             className="mx-auto mb-6"
           >
             <Image
@@ -110,6 +136,7 @@ export default function Home() {
               width={100}
               height={100}
               className={`mx-auto ${resolvedTheme === "dark" ? "invert" : ""}`}
+              priority
             />
           </motion.div>
 
@@ -142,7 +169,7 @@ export default function Home() {
           >
             <Link
               href="#tools"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-foreground text-background font-medium text-lg hover:opacity-90 transition duration-200"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-foreground text-background font-medium text-lg hover:opacity-90 transition duration-200 shadow-lg hover:shadow-xl"
             >
               Explore Tools
               <FiArrowRight className="mt-1" />
@@ -161,20 +188,29 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            // viewport={{ once: true }}
+            viewport={{ once: true }}
             className="text-3xl md:text-4xl font-bold font-sans mb-4"
           >
-            Explore Our Tools
+            <span className="relative inline-block">
+              <span className="relative z-10">Explore Our Tools</span>
+              <motion.span
+                className="absolute bottom-0 left-0 w-full h-2 bg-primary/20 -z-0"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              />
+            </span>
           </motion.h2>
 
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            // viewport={{ once: true }}
+            viewport={{ once: true }}
             className="text-muted-foreground mb-10 text-lg font-sans"
           >
-            Choose a category to get started
+            Browse popular tool categories to get started quickly.
           </motion.p>
 
           {/* Grid Layout */}
@@ -182,27 +218,29 @@ export default function Home() {
             variants={container}
             initial="hidden"
             whileInView="show"
-            // viewport={{ once: true }}
+            viewport={{ once: true }}
             className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
           >
-            {categories?.map((cat) => (
-              <motion.div key={cat.name} variants={item} whileHover={cardHover}>
-                <Link
-                  href="#tools"
-                  className="bg-muted hover:bg-muted/70 border border-border rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all shadow-sm hover:shadow-md group"
-                >
-                  <motion.div className="mb-3 text-3xl text-primary group-hover:text-secondary transition-colors">
-                    {cat.icon}
-                  </motion.div>
-                  <h3 className="text-lg font-semibold font-sans">
-                    {cat.name}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mt-2">
-                    {cat.description}
-                  </p>
-                </Link>
-              </motion.div>
+            {categories?.slice(0, 3).map((cat) => (
+              <CategoryCard category={cat} key={cat?.name} />
             ))}
+          </motion.div>
+
+          {/* View All Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mt-12"
+          >
+            <Link
+              href={ROUTES.TOOLS}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-foreground text-background font-medium text-lg hover:opacity-90 transition duration-200 shadow-md hover:shadow-lg"
+            >
+              View All Tools
+              <FiArrowRight className="mt-1" />
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -217,17 +255,26 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            // viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             className="text-3xl md:text-4xl font-bold font-sans mb-4"
           >
-            Top Featured Tools
+            <span className="relative inline-block">
+              <span className="relative z-10">Top Featured Tools</span>
+              <motion.span
+                className="absolute bottom-0 left-0 w-full h-2 bg-secondary/20 -z-0"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              />
+            </span>
           </motion.h2>
 
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            // viewport={{ once: true }}
+            viewport={{ once: true }}
             className="text-muted-foreground mb-10 text-lg font-sans"
           >
             Most-used and trending tools at your fingertips
@@ -238,34 +285,11 @@ export default function Home() {
             variants={container}
             initial="hidden"
             whileInView="show"
-            // viewport={{ once: true }}
+            viewport={{ once: true }}
             className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
           >
-            {featuredTools?.map((tool) => (
-              <motion.div
-                key={tool.name}
-                variants={item}
-                whileHover={cardHover}
-                className="bg-muted border border-border rounded-xl p-6 text-left shadow-sm hover:shadow-md transition-all relative overflow-hidden group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative z-10">
-                  <div className="text-4xl mb-4 text-primary">{tool.icon}</div>
-                  <h3 className="text-xl font-semibold font-sans mb-2">
-                    {tool.name}
-                  </h3>
-                  <p className="text-muted-foreground mb-4">
-                    {tool.description}
-                  </p>
-                  <Link
-                    href={tool.href}
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg hover:opacity-90 transition group"
-                  >
-                    Use Now
-                    <FiArrowRight className="mt-1 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </div>
-              </motion.div>
+            {tools?.map((tool) => (
+              <ToolCard tool={tool} key={tool?.name} />
             ))}
           </motion.div>
         </div>
@@ -278,17 +302,26 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            // viewport={{ once: true }}
+            viewport={{ once: true }}
             className="text-3xl md:text-4xl font-bold font-sans mb-4"
           >
-            Why AzamTools?
+            <span className="relative inline-block">
+              <span className="relative z-10">Why AzamTools?</span>
+              <motion.span
+                className="absolute bottom-0 left-0 w-full h-2 bg-primary/20 -z-0"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              />
+            </span>
           </motion.h2>
 
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            // viewport={{ once: true }}
+            viewport={{ once: true }}
             className="text-muted-foreground mb-10 text-lg font-sans"
           >
             Here's why thousands trust our tools
@@ -298,68 +331,57 @@ export default function Home() {
             variants={container}
             initial="hidden"
             whileInView="show"
-            // viewport={{ once: true }}
+            viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left"
           >
-            <motion.div
-              variants={item}
-              className="flex items-start gap-4 p-4 bg-muted rounded-lg"
-            >
-              <div className="p-2 bg-primary/10 rounded-full text-primary">
-                <FiCheck className="text-xl" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg">100% Free Tools</h3>
-                <p className="text-muted-foreground text-sm">
-                  Use all tools without any cost, forever.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={item}
-              className="flex items-start gap-4 p-4 bg-muted rounded-lg"
-            >
-              <div className="p-2 bg-secondary/10 rounded-full text-secondary">
-                <FiZap className="text-xl" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg">Fast & Lightweight</h3>
-                <p className="text-muted-foreground text-sm">
-                  Built for speed – no lag, no loading.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={item}
-              className="flex items-start gap-4 p-4 bg-muted rounded-lg"
-            >
-              <div className="p-2 bg-primary/10 rounded-full text-primary">
-                <FiGlobe className="text-xl" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg">Cross-Device Support</h3>
-                <p className="text-muted-foreground text-sm">
-                  Fully responsive, works on all screen sizes.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={item}
-              className="flex items-start gap-4 p-4 bg-muted rounded-lg"
-            >
-              <div className="p-2 bg-secondary/10 rounded-full text-secondary">
-                <FiLock className="text-xl" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg">Privacy-respecting</h3>
-                <p className="text-muted-foreground text-sm">
-                  No data collection – your info stays with you.
-                </p>
-              </div>
-            </motion.div>
+            {[
+              {
+                icon: <FiCheck className="text-xl" />,
+                title: "100% Free Tools",
+                description: "Use all tools without any cost, forever.",
+                bg: "bg-primary/10",
+                color: "text-primary",
+              },
+              {
+                icon: <FiZap className="text-xl" />,
+                title: "Fast & Lightweight",
+                description: "Built for speed – no lag, no loading.",
+                bg: "bg-secondary/10",
+                color: "text-secondary",
+              },
+              {
+                icon: <FiGlobe className="text-xl" />,
+                title: "Cross-Device Support",
+                description: "Fully responsive, works on all screen sizes.",
+                bg: "bg-primary/10",
+                color: "text-primary",
+              },
+              {
+                icon: <FiLock className="text-xl" />,
+                title: "Privacy-respecting",
+                description: "No data collection – your info stays with you.",
+                bg: "bg-secondary/10",
+                color: "text-secondary",
+              },
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                variants={item}
+                className="flex items-start gap-4 p-4 bg-muted rounded-lg shadow-sm hover:shadow-md transition-all"
+              >
+                <div
+                  className={`p-2 ${feature.bg} rounded-full ${feature.color}`}
+                >
+                  {feature.icon}
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">{feature.title}</h3>
+                  <p className="text-muted-foreground text-sm">
+                    {feature.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
@@ -374,27 +396,37 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            // viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             className="text-3xl md:text-4xl font-bold font-sans mb-6"
           >
-            Search & Explore Tools
+            <span className="relative inline-block">
+              <span className="relative z-10">Search & Explore Tools</span>
+              <motion.span
+                className="absolute bottom-0 left-0 w-full h-2 bg-secondary/20 -z-0"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              />
+            </span>
           </motion.h2>
 
           {/* Search Input */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            // viewport={{ once: true }}
+            viewport={{ once: true }}
+            whileHover={{ y: -2 }}
             className="relative mb-6"
           >
             <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Find a tool..."
+              placeholder="Find a tool?..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 border border-border rounded-xl bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary transition"
+              className="w-full pl-12 pr-4 py-3 border border-border rounded-xl bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary transition shadow-sm hover:shadow-md"
             />
           </motion.div>
 
@@ -409,28 +441,50 @@ export default function Home() {
           >
             {filteredTools?.length > 0 ? (
               filteredTools?.map((tool) => (
-                <motion.div key={tool.name} variants={item}>
+                <motion.div
+                  key={tool?.name}
+                  variants={item}
+                  whileHover={{ y: -3 }}
+                >
                   <Link
-                    href="#explore-tools"
-                    className="block p-4 bg-muted border border-border rounded-lg text-left hover:shadow-sm transition hover:bg-muted/70 group"
+                    href={ROUTES.TOOL(tool?.slug)}
+                    className="block p-4 bg-muted border border-border rounded-lg text-left hover:shadow-md transition hover:bg-muted/70 group relative overflow-hidden"
                   >
-                    <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
-                      {tool.name}
+                    <h3 className="font-semibold text-lg group-hover:text-primary transition-colors relative z-10">
+                      {tool?.name}
                     </h3>
-                    <p className="text-muted-foreground text-sm mt-1">
-                      {tool.description}
+                    <p className="text-muted-foreground text-sm mt-1 relative z-10">
+                      {tool?.description}
                     </p>
                   </Link>
                 </motion.div>
               ))
             ) : (
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-muted-foreground col-span-full"
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ type: "spring", stiffness: 100 }}
+                className="flex flex-col items-center justify-center py-12 col-span-full"
               >
-                No tools found matching your search.
-              </motion.p>
+                <motion.div
+                  animate={{
+                    y: [0, -5, 0],
+                    transition: {
+                      repeat: Infinity,
+                      duration: 2,
+                      ease: "easeInOut",
+                    },
+                  }}
+                  className="text-6xl mb-4"
+                >
+                  🔍
+                </motion.div>
+                <h3 className="text-xl font-medium mb-2">No tools found</h3>
+                <p className="text-muted-foreground text-center max-w-md">
+                  Try adjusting your search or filter to find what you're
+                  looking for.
+                </p>
+              </motion.div>
             )}
           </motion.div>
         </div>
@@ -439,13 +493,13 @@ export default function Home() {
       {/* CTA Section */}
       <section
         id="cta-sec"
-        className="bg-background text-foreground py-20 px-4 sm:px-6 lg:px-8"
+        className="bg-background text-foreground pb-15 px-4 sm:px-6 lg:px-8"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          // viewport={{ once: true }}
+          viewport={{ once: true }}
           className="max-w-4xl mx-auto bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 sm:p-12 text-center"
         >
           <h2 className="text-2xl md:text-3xl font-bold font-sans mb-4">

@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://www.azamtools.com"),
   title: "AzamTools – Free Online Tools Hub",
   description:
     "Free and fast online tools – PDF, image, text, and developer tools. No sign-up, no cost.",
