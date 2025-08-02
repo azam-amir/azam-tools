@@ -3,20 +3,13 @@
 import { CategoryCard } from "@/components/Cards/CategoryCard";
 import { ToolCard } from "@/components/Cards/ToolCard";
 import { animations, ROUTES } from "@/utils/constant";
-import { categories, tools } from "@/utils/mock";
+import { categories, highlights, tools } from "@/utils/mock";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import {
-  FiArrowRight,
-  FiCheck,
-  FiGlobe,
-  FiLock,
-  FiSearch,
-  FiZap,
-} from "react-icons/fi";
+import { FiArrowRight, FiSearch } from "react-icons/fi";
 import Logo from "../../public/images/logo.png";
 
 export default function Home() {
@@ -269,36 +262,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left"
           >
-            {[
-              {
-                icon: <FiCheck className="text-xl" />,
-                title: "100% Free Tools",
-                description: "Use all tools without any cost, forever.",
-                bg: "bg-primary/10",
-                color: "text-primary",
-              },
-              {
-                icon: <FiZap className="text-xl" />,
-                title: "Fast & Lightweight",
-                description: "Built for speed – no lag, no loading.",
-                bg: "bg-secondary/10",
-                color: "text-secondary",
-              },
-              {
-                icon: <FiGlobe className="text-xl" />,
-                title: "Cross-Device Support",
-                description: "Fully responsive, works on all screen sizes.",
-                bg: "bg-primary/10",
-                color: "text-primary",
-              },
-              {
-                icon: <FiLock className="text-xl" />,
-                title: "Privacy-respecting",
-                description: "No data collection – your info stays with you.",
-                bg: "bg-secondary/10",
-                color: "text-secondary",
-              },
-            ].map((feature, index) => (
+            {highlights?.map((feature, index) => (
               <motion.div
                 key={index}
                 variants={animations.item}
@@ -428,7 +392,7 @@ export default function Home() {
       {/* CTA Section */}
       <section
         id="cta-sec"
-        className="bg-background text-foreground pb-15 px-4 sm:px-6 lg:px-8"
+        className="bg-background text-foreground px-4 sm:px-6 lg:px-8"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}

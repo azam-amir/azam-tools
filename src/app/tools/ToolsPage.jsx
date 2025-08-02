@@ -23,7 +23,7 @@ export default function ToolsPage() {
   if (!mounted) return null;
 
   return (
-    <main className="max-w-7xl mx-auto px-4 py-16 text-foreground mb-10">
+    <main className="max-w-7xl mx-auto px-4 py-16 text-foreground">
       {/* Title with enhanced animation */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

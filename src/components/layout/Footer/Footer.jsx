@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Youtube } from "lucide-react"; // You can replace with other icons if needed
+import { Github, Youtube } from "lucide-react";
+import { ROUTES, SOCIAL_LINKS } from "@/utils/constant";
 
 export default function Footer() {
   return (
-    <footer className="bg-background/80 backdrop-blur fixed bottom-0 w-full z-10 text-foreground py-6">
+    <footer className="bg-background/80 backdrop-blur w-full z-10 text-foreground py-6">
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
         {/* Left: Copyright + Credit */}
         <div className="text-center md:text-left">
@@ -17,19 +18,19 @@ export default function Footer() {
         {/* Center: Quick Links */}
         <div className="flex gap-6">
           <Link
-            href="/about"
+            href={ROUTES.ABOUT}
             className="hover:underline hover:text-primary transition"
           >
             About
           </Link>
           <Link
-            href="/contact"
+            href={ROUTES.CONTACT}
             className="hover:underline hover:text-primary transition"
           >
             Contact
           </Link>
           <Link
-            href="/privacy"
+            href={ROUTES.PRIVACY}
             className="hover:underline hover:text-primary transition"
           >
             Privacy
@@ -39,7 +40,7 @@ export default function Footer() {
         {/* Right: Social Icons */}
         <div className="flex gap-4">
           <a
-            href="https://github.com/azam-amir"
+            href={SOCIAL_LINKS.GITHUB}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -48,7 +49,7 @@ export default function Footer() {
             <Github size={18} />
           </a>
           <a
-            href="https://youtube.com/@your-channel"
+            href={SOCIAL_LINKS.YOUTUBE}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="YouTube"
