@@ -1,7 +1,7 @@
 "use client";
 
 import { CategoryCard } from "@/components/Cards/CategoryCard";
-import { ToolCard } from "@/components/cards/ToolCard";
+import { ToolCard } from "@/components/Cards/ToolCard";
 import { animations } from "@/utils/constant";
 import { categories, tools } from "@/utils/mock";
 import { motion } from "framer-motion";
