@@ -1,9 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-import { ThemeProvider } from "@/components/themeProvider/theme-provider";
-import LoaderWrapper from "@/components/Loader/LoaderWrapper";
+import Header from "@/components/layout/Header/Header";
+import Footer from "@/components/layout/Footer/Footer";
+import { ThemeProvider } from "@/components/layout/themeProvider/theme-provider";
+import LoaderWrapper from "@/components/shared/Loader/LoaderWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://www.azamtools.com"),
+  metadataBase: new URL("https://www.azamtools.vercel.app"),
   title: "AzamTools – Free Online Tools Hub",
   description:
     "Free and fast online tools – PDF, image, text, and developer tools. No sign-up, no cost.",
@@ -36,11 +36,11 @@ export const metadata = {
     title: "AzamTools – All-in-One Tools Hub",
     description:
       "Use free online tools without any cost. Built for speed and privacy.",
-    url: "https://azamtools.com",
+    url: "https://azamtools.vercel.app",
     siteName: "AzamTools",
     images: [
       {
-        url: "/public/images/preview-image.jpg",
+        url: "https://azamtools.vercel.app/images/preview-image.jpg",
         width: 1200,
         height: 630,
       },
@@ -57,14 +57,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`flex flex-col min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <LoaderWrapper>
             <Header />
-            <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4 sm:px-6 lg:px-8">
+            <main className="flex-grow bg-background text-foreground px-4 sm:px-6 lg:px-8">
               {children}
-            </div>
+            </main>
             <Footer />
           </LoaderWrapper>
         </ThemeProvider>

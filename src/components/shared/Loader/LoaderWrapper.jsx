@@ -1,6 +1,6 @@
 "use client";
 
-import Loader from "@/components/Loader/Loader";
+import Loader from "@/components/shared/Loader/Loader";
 import { useEffect, useState } from "react";
 
 export default function LoaderWrapper({ children }) {

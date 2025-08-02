@@ -1,6 +1,6 @@
 "use client";
 
-import { ModeToggle } from "@/components/ModeToggle/ModeToggle";
+import { ModeToggle } from "@/components/shared/ModeToggle/ModeToggle";
 import Link from "next/link";
 
 export default function Header() {

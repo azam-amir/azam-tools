@@ -1,12 +1,11 @@
 "use client";
 
-import { CategoryCard } from "@/components/Cards/CategoryCard";
-import { ToolCard } from "@/components/Cards/ToolCard";
-import { ROUTES } from "@/utils/constant";
+import { CategoryCard } from "@/components/cards/CategoryCard";
+import { ToolCard } from "@/components/cards/ToolCard";
+import { animations, ROUTES } from "@/utils/constant";
 import { categories, tools } from "@/utils/mock";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -19,43 +18,6 @@ import {
   FiZap,
 } from "react-icons/fi";
 import Logo from "../../public/images/logo.png";
-
-// Animation variants
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
-      duration: 0.5,
-    },
-  },
-};
-
-const cardHover = {
-  y: -5,
-  scale: 1.02,
-  transition: {
-    type: "spring",
-    stiffness: 300,
-    damping: 10,
-  },
-};
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -80,34 +42,7 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <main className="">
-      <Head>
-        <title>AzamTools – Free Online Tools Hub</title>
-        <meta
-          name="description"
-          content="Free and fast online tools – PDF, image, text, and developer tools. No sign-up, no cost."
-        />
-        <meta
-          name="keywords"
-          content="online tools, free tools, pdf tools, image to pdf, image compressor, QR generator, text converter, JSON formatter"
-        />
-        <meta name="author" content="Muhammad Azam Raza" />
-        <meta name="robots" content="index, follow" />
-
-        {/* Open Graph for social media */}
-        <meta property="og:title" content="AzamTools – All-in-One Tools Hub" />
-        <meta
-          property="og:description"
-          content="Use free online tools without any cost. Built for speed and privacy."
-        />
-        <meta
-          property="og:image"
-          content="https://azamtools.com/preview-image.png"
-        />
-        <meta property="og:url" content="https://azamtools.com" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+    <main>
       {/* Hero Section */}
       <section className="flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -215,7 +150,7 @@ export default function Home() {
 
           {/* Grid Layout */}
           <motion.div
-            variants={container}
+            variants={animations.container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
@@ -282,7 +217,7 @@ export default function Home() {
 
           {/* Grid Layout */}
           <motion.div
-            variants={container}
+            variants={animations.container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
@@ -328,7 +263,7 @@ export default function Home() {
           </motion.p>
 
           <motion.div
-            variants={container}
+            variants={animations.container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
@@ -366,7 +301,7 @@ export default function Home() {
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                variants={item}
+                variants={animations.item}
                 className="flex items-start gap-4 p-4 bg-muted rounded-lg shadow-sm hover:shadow-md transition-all"
               >
                 <div
@@ -432,7 +367,7 @@ export default function Home() {
 
           {/* Filtered Tool List */}
           <motion.div
-            variants={container}
+            variants={animations.container}
             initial="hidden"
             whileInView="show"
             animate="show"
@@ -443,7 +378,7 @@ export default function Home() {
               filteredTools?.map((tool) => (
                 <motion.div
                   key={tool?.name}
-                  variants={item}
+                  variants={animations.item}
                   whileHover={{ y: -3 }}
                 >
                   <Link

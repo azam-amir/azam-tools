@@ -1,39 +1,14 @@
 "use client";
 
-import { ROUTES } from "@/utils/constant";
+import { animations, ROUTES } from "@/utils/constant";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FiArrowRight, FiStar, FiTrendingUp } from "react-icons/fi";
 
-const item = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
-      duration: 0.5,
-    },
-  },
-};
-
-const cardHover = {
-  y: -5,
-  scale: 1.02,
-  transition: {
-    type: "spring",
-    stiffness: 300,
-    damping: 10,
-  },
-};
-
 export const ToolCard = ({ tool }) => (
   <motion.div
-    variants={item}
-    whileHover={cardHover}
+    variants={animations.item}
+    whileHover={animations.cardHover}
     className="p-6 bg-muted border border-border rounded-xl shadow-sm hover:shadow-md transition group relative overflow-hidden"
   >
     {tool?.isNew && (
