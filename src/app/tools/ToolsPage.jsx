@@ -1,6 +1,6 @@
 "use client";
 
-import { CategoryCard } from "@/components/cards/CategoryCard";
+import { CategoryCard } from "@/components/Cards/CategoryCard";
 import { ToolCard } from "@/components/cards/ToolCard";
 import { animations } from "@/utils/constant";
 import { categories, tools } from "@/utils/mock";
