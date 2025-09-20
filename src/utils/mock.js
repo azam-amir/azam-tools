@@ -213,7 +213,7 @@ export const socialLinks = [
   },
   {
     label: "LinkedIn",
-    url: SOCIAL_LINKS.TWITTER,
+    url: SOCIAL_LINKS.LINKEDIN,
     icon: <FaLinkedin className="text-xl" />,
     color: "bg-blue-600 hover:bg-blue-700",
   },

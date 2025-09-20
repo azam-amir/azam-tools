@@ -228,6 +228,7 @@ export default function AboutPage() {
                   key={index}
                   variants={animations.item}
                   href={link?.url}
+                  target="_blank"
                   className="text-primary hover:underline"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -269,6 +270,7 @@ export default function AboutPage() {
           <motion.a
             variants={animations.item}
             href={SOCIAL_LINKS.GITHUB}
+            target="_blank"
             className="inline-flex items-center gap-2 px-6 py-3 bg-muted border border-border text-foreground rounded-xl hover:bg-muted/70 transition font-medium"
             whileHover={{
               scale: 1.05,

@@ -75,7 +75,7 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-4xl md:text-5xl font-bold font-sans leading-tight"
           >
-            AzamTools – All-in-One Online Tools Hub
+            Free Online Tools for PDF, Text, Images & More – AzamTools
           </motion.h1>
 
           {/* Tagline */}
@@ -85,7 +85,9 @@ export default function Home() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="mt-4 text-lg md:text-xl text-muted-foreground font-sans"
           >
-            Fast, free & useful tools – all in one place.
+            All-in-one toolkit to{" "}
+            <strong>convert, edit, compress & generate</strong>. <br /> Save
+            time with 50+ free tools trusted by thousands.
           </motion.p>
 
           {/* Call to Action */}
@@ -120,7 +122,7 @@ export default function Home() {
             className="text-3xl md:text-4xl font-bold font-sans mb-4"
           >
             <span className="relative inline-block">
-              <span className="relative z-10">Explore Our Tools</span>
+              <span className="relative z-10">Explore Our Tool Categories</span>
               <motion.span
                 className="absolute bottom-0 left-0 w-full h-2 bg-primary/20 -z-0"
                 initial={{ scaleX: 0 }}
@@ -138,7 +140,8 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-muted-foreground mb-10 text-lg font-sans"
           >
-            Browse popular tool categories to get started quickly.
+            Find the right tool fast – from PDF utilities to text, images, and
+            coding helpers.
           </motion.p>
 
           {/* Grid Layout */}
@@ -205,7 +208,8 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-muted-foreground mb-10 text-lg font-sans"
           >
-            Most-used and trending tools at your fingertips
+            Most-loved tools our users use daily for documents, text, and
+            images.
           </motion.p>
 
           {/* Grid Layout */}
@@ -252,7 +256,9 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-muted-foreground mb-10 text-lg font-sans"
           >
-            Here's why thousands trust our tools
+            Join thousands who trust us for{" "}
+            <strong>fast, secure, and free</strong> tools – available anytime,
+            anywhere.
           </motion.p>
 
           <motion.div
@@ -402,16 +408,17 @@ export default function Home() {
           className="max-w-4xl mx-auto bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 sm:p-12 text-center"
         >
           <h2 className="text-2xl md:text-3xl font-bold font-sans mb-4">
-            Ready to boost your productivity?
+            Ready to Work Smarter, Not Harder?
           </h2>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of users who save time with our tools every day.
+            Boost productivity with 50+ free tools – trusted by students,
+            professionals, and businesses.
           </p>
           <Link
-            href="#cta-sec"
+            href={ROUTES.TOOLS}
             className="inline-flex items-center gap-2 px-6 py-3 font-medium text-lg hover:opacity-90 transition duration-200"
           >
-            Get Started Now
+            Start Using Tools Free
             <FiArrowRight className="mt-1" />
           </Link>
         </motion.div>
