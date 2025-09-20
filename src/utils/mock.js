@@ -74,6 +74,7 @@ export const tools = [
     icon: "📄",
     href: "/tools/pdf-to-image",
     category: "pdf-tools",
+    component: "PdfToImage",
   },
   {
     name: "Image Compressor",
@@ -82,6 +83,7 @@ export const tools = [
     icon: "🖼️",
     href: "/tools/image-compressor",
     category: "image-tools",
+    component: "ImageCompressor",
   },
   {
     name: "Text Case Converter",
@@ -90,6 +92,7 @@ export const tools = [
     icon: "🔤",
     href: "/tools/text-case-converter",
     category: "text-tools",
+    component: "TextCaseConverter",
   },
   {
     name: "QR Code Generator",
@@ -98,6 +101,7 @@ export const tools = [
     icon: "🔳",
     href: "/tools/qr-code-generator",
     category: "dev-tools",
+    component: "QrCodeGenerator",
   },
   {
     name: "JSON Formatter",
@@ -106,6 +110,7 @@ export const tools = [
     icon: "🧾",
     href: "/tools/json-formatter",
     category: "dev-tools",
+    component: "JsonFormatter",
   },
   {
     name: "Password Generator",
@@ -114,6 +119,7 @@ export const tools = [
     icon: "🔒",
     href: "/tools/password-generator",
     category: "dev-tools",
+    component: "PasswordGenerator",
   },
 ];
 

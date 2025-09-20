@@ -1,10 +1,9 @@
+import CategoryPage from "@/app/tools/category/CategoryPage";
 import { categories } from "@/utils/mock";
 
 export async function generateMetadata({ params }) {
   const { category } = await params;
-
   const categorySlug = category;
-
   const singleCategory = categories?.find((cat) => cat?.slug === categorySlug);
 
   if (!singleCategory) {
@@ -48,22 +47,12 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function CategoryPage({ params }) {
+export default async function Category({ params }) {
   const { category } = await params;
-
-  const singleCategory = categories?.find((cat) => cat?.slug === category);
-
-  if (!singleCategory) {
-    return (
-      <main className="max-w-7xl mx-auto px-4 py-16 text-center">
-        <h1 className="text-3xl font-semibold">Category not found</h1>
-      </main>
-    );
-  }
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-16 mb-10">
-      <h1 className="text-3xl font-bold mb-4">{singleCategory?.name} Tools</h1>
+      <CategoryPage category={category} />
     </main>
   );
 }

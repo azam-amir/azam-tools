@@ -1,3 +1,10 @@
+import ImageCompressor from "@/app/tools/ImageCompressor";
+import JsonFormatter from "@/app/tools/JsonFormatter";
+import PasswordGenerator from "@/app/tools/PasswordGenerator";
+import PdfToImage from "@/app/tools/PdfToImage";
+import QrCodeGenerator from "@/app/tools/QrCodeGenerator";
+import TextCaseConverter from "@/app/tools/TextCaseConverter";
+
 export const ROUTES = {
   HOME: "/",
   TOOLS: "/tools",
@@ -92,4 +99,13 @@ export const SOCIAL_LINKS = {
   INSTAGRAM: "https://www.instagram.com/azamstylixh",
   YOUTUBE: "https://www.youtube.com/@AzAmTech-pw8ts",
   TWITTER: "https://twitter.com/azamstylish",
+};
+
+export const toolComponents = {
+  PdfToImage,
+  ImageCompressor,
+  TextCaseConverter,
+  QrCodeGenerator,
+  JsonFormatter,
+  PasswordGenerator,
 };
