@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import JSZip from "jszip";
 import * as pdfjsLib from "pdfjs-dist";
 import { useState } from "react";
+import { FaFilePdf } from "react-icons/fa";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.min.js";
 
@@ -112,9 +113,9 @@ export default function PdfToImage() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-3xl font-bold mb-6 text-center"
+        className="text-3xl font-bold mb-6 text-center flex justify-center items-center gap-3"
       >
-        📄 PDF to Image Converter
+        <FaFilePdf className="text-[28px]" /> PDF to Image Converter
       </motion.h2>
 
       {/* Upload Section with Drag & Drop */}

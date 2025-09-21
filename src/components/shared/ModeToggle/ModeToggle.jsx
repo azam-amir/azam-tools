@@ -1,8 +1,9 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useState, useEffect } from "react";
-import { Sun, Moon } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();
@@ -15,9 +16,11 @@ export function ModeToggle() {
   if (!mounted) return null;
 
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="p-2 rounded-full hover:bg-muted transition"
+      className="p-2"
       aria-label="Toggle Theme"
     >
       {theme === "light" ? (
@@ -25,6 +28,6 @@ export function ModeToggle() {
       ) : (
         <Sun size={18} className="cursor-pointer" />
       )}
-    </button>
+    </motion.button>
   );
 }

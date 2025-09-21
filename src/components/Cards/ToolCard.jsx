@@ -25,11 +25,15 @@ export const ToolCard = ({ tool }) => (
     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
     <div className="relative z-10">
-      <div className="text-3xl mb-4 text-primary group-hover:text-secondary transition-colors duration-300">
-        {tool?.icon}
+      <div className="flex flex-col items-center">
+        <div className="text-3xl mb-4 text-primary group-hover:text-secondary transition-colors duration-300">
+          {tool?.icon}
+        </div>
+        <h3 className="text-lg font-semibold mb-1">{tool?.name}</h3>
+        <p className="text-sm text-muted-foreground mb-3">
+          {tool?.description}
+        </p>
       </div>
-      <h3 className="text-lg font-semibold mb-1">{tool?.name}</h3>
-      <p className="text-sm text-muted-foreground mb-3">{tool?.description}</p>
       <div className="flex items-center justify-between mt-4">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <motion.div whileHover={{ scale: 1.2 }}>
