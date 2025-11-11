@@ -4,6 +4,7 @@ import PasswordGenerator from "@/app/tools/PasswordGenerator";
 import PdfToImage from "@/app/tools/PdfToImage";
 import QrCodeGenerator from "@/app/tools/QrCodeGenerator";
 import TextCaseConverter from "@/app/tools/TextCaseConverter";
+import UrlShortener from "@/app/tools/UrlShortener";
 
 export const ROUTES = {
   HOME: "/",
@@ -108,4 +109,5 @@ export const toolComponents = {
   QrCodeGenerator,
   JsonFormatter,
   PasswordGenerator,
+  UrlShortener,
 };

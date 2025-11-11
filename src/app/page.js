@@ -272,7 +272,7 @@ export default function Home() {
               <motion.div
                 key={index}
                 variants={animations.item}
-                className="flex items-start gap-4 p-4 bg-muted rounded-lg shadow-sm hover:shadow-md transition-all"
+                className="flex items-start gap-4 p-4 bg-muted rounded-lg"
               >
                 <div
                   className={`p-2 ${feature.bg} rounded-full ${feature.color}`}

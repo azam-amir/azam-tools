@@ -13,6 +13,7 @@ import {
   FaFilePdf,
   FaGithub,
   FaImage,
+  FaLink,
   FaLinkedin,
   FaLock,
   FaQrcode,
@@ -113,6 +114,15 @@ export const tools = [
     href: "/tools/qr-code-generator",
     category: "dev-tools",
     component: "QrCodeGenerator",
+  },
+  {
+    name: "Url Shortener",
+    slug: "url-shortener",
+    description: "Make any Big URL Shortener.",
+    icon: <FaLink className="text-purple-600 text-[28px] flex" />,
+    href: "/tools/url-shortener",
+    category: "dev-tools",
+    component: "UrlShortener",
   },
   {
     name: "JSON Formatter",

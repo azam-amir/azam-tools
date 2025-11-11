@@ -80,11 +80,11 @@ export default function CategoryPage({ category }) {
           </div>
         </div>
         <h1 className="text-3xl md:text-4xl font-bold">
-          {singleCategory?.name} Tools
+          {singleCategory?.name}
         </h1>
         <p className="text-muted-foreground mt-3 max-w-2xl mx-auto text-lg">
-          Powerful and free {singleCategory?.name.toLowerCase()} tools to boost
-          your productivity. No sign-up, no limits — just simple and fast online
+          Powerful and free {singleCategory?.name.toLowerCase()} to boost your
+          productivity. No sign-up, no limits — just simple and fast online
           utilities.
         </p>
       </motion.div>
@@ -147,7 +147,7 @@ export default function CategoryPage({ category }) {
         className="mt-20 bg-muted rounded-xl p-8"
       >
         <h2 className="text-2xl font-bold mb-4">
-          Why Use Our {singleCategory?.name} Tools?
+          Why Use Our {singleCategory?.name}?
         </h2>
         <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
           <li>Completely free, no hidden costs</li>
